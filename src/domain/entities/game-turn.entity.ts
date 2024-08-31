@@ -8,16 +8,18 @@ export class GameTurn {
     readonly game: string,
     readonly player: Player,
     readonly status: GameStatus,
+    readonly table: string,
     readonly createdAt: Date,
     readonly updatedAt: Date
   ) {}
 
-  static create(game: string, playerName: string): GameTurn {
+  static create(game: string, player: Player, table: string): GameTurn {
     return new GameTurn(
       uuidv4(),
       game,
-      new Player(playerName),
+      player,
       GameStatus.IN_PROGRESS,
+      table,
       new Date(),
       new Date()
     );
@@ -29,17 +31,19 @@ export class GameTurn {
       this.game,
       this.player,
       GameStatus.FINISHED,
+      this.table,
       this.createdAt,
       new Date()
     );
   }
 
-  changePlayer(playerName: string): GameTurn {
+  changePlayer(player: Player): GameTurn {
     return new GameTurn(
       this.id,
       this.game,
-      new Player(playerName),
+      player,
       this.status,
+      this.table,
       this.createdAt,
       new Date()
     );

@@ -1,5 +1,7 @@
-import { Message } from "../entities/message.entity";
-
 export interface MessageService {
-  sendMessage(message: Message): Promise<void>;
+  sendTurnMessage(
+    playerPhoneNumber: string,
+    table: string,
+    gameName: string
+  ): Promise<void>;
 }

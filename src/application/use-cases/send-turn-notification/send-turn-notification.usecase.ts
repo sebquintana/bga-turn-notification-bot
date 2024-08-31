@@ -1,11 +1,13 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Message } from "src/domain/entities/message.entity";
 import { CheckGameTurnService } from "src/domain/ports/check-game-turn.service";
 import { GameTurnRepository } from "src/domain/ports/game-turn.repository";
 import { MessageService } from "src/domain/ports/message.service";
 
 @Injectable()
 export class SendTurnNotificationUsecase {
+  private readonly gameName = "Las Ruinas Perdidas de Arnak";
+  private readonly arnakTable = "1/arnak?table=555755591";
+
   constructor(
     @Inject("BGACheckGameTurnService")
     private checkGameTurnService: CheckGameTurnService,
@@ -20,8 +22,11 @@ export class SendTurnNotificationUsecase {
     const gameTurn = await this.gameTurnRepository.get();
 
     if (actualPlayer.name !== gameTurn.player.name) {
-      const message = Message.create(actualPlayer.name, gameTurn.game);
-      await this.messageService.sendMessage(message);
+      await this.messageService.sendTurnMessage(
+        actualPlayer.phoneNumber,
+        this.arnakTable,
+        this.gameName
+      );
     } else {
       console.log("El Jugador anterior todavia no jugo");
     }

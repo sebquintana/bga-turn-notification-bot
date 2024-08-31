@@ -5,10 +5,16 @@ import { GameTurnRepository } from "src/domain/ports/game-turn.repository";
 
 @Injectable()
 export class InMemoryGameTurnRepository implements GameTurnRepository {
-  save(gameTurn: GameTurn): Promise<void> {
-    throw new Error("Method not implemented.");
+  private storage: Map<string, GameTurn>;
+
+  constructor() {
+    this.storage = new Map();
+  }
+
+  async save(gameTurn: GameTurn): Promise<void> {
+    this.storage.set(gameTurn.id, gameTurn);
   }
   async get(): Promise<GameTurn> {
-    return GameTurn.create("My City", "Axel");
+    return this.storage.get("My City");
   }
 }
