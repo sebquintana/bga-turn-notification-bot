@@ -9,6 +9,6 @@ export class BGACheckGameTurnService implements CheckGameTurnService {
     // Loguearnos a la bga
     // Obtener el jugador actual del juego
     // devolverlo
-    return new Player("Axel");
+    return new Player("Axel", "confignumber", "axelz056");
   }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import { GameTurn } from "src/domain/entities/game-turn.entity";
-import { Player } from "src/domain/entities/player.vo";
 import { GameTurnRepository } from "src/domain/ports/game-turn.repository";
 
 @Injectable()

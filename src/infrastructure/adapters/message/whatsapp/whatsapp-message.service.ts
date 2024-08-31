@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { MessageService } from "src/domain/ports/message.service";
 import axios from "axios";
-import { Player } from "src/domain/entities/player.vo";
 
 @Injectable()
 export class WhatsappMessageService implements MessageService {
@@ -18,7 +17,7 @@ export class WhatsappMessageService implements MessageService {
     console.log("sending message");
     var data = this.getTurnMessageInput(playerPhoneNumber, table, gameName);
 
-    var config = {
+    var sendMessageRequest = {
       method: "post",
       url: `https://graph.facebook.com/${this.apiVersion}/${this.phoneNumberId}/messages`,
       headers: {
@@ -29,8 +28,8 @@ export class WhatsappMessageService implements MessageService {
     };
 
     try {
-      await axios(config);
-      console.log("Message sent successfully");
+      await axios(sendMessageRequest);
+      console.log("Message sent successfully: ", data);
     } catch (error) {
       console.error("Error sending message:", error);
     }
