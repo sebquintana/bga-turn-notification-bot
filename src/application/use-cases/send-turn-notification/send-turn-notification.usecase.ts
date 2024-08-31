@@ -13,7 +13,7 @@ export class SendTurnNotificationUsecase {
     private checkGameTurnService: CheckGameTurnService,
     @Inject("InMemoryGameTurnRepository")
     private gameTurnRepository: GameTurnRepository,
-    @Inject("WhatsappMessageService")
+    @Inject("MockWhatsappMessageService")
     private messageService: MessageService
   ) {}
 
