@@ -1,7 +1,4 @@
 import { Module } from "@nestjs/common";
-import { BotController } from "./infrastructure/rest/bot.controller";
-import { QRBotUsecase } from "./application/use-cases/qr-bot.usecase";
-import { EventEmitterModule } from "@nestjs/event-emitter";
 import { TurnNotificationController } from "./infrastructure/rest/turn-notification.controller";
 import { SendTurnNotificationUsecase } from "./application/use-cases/send-turn-notification/send-turn-notification.usecase";
 import { BGACheckGameTurnService } from "./infrastructure/adapters/bga/bga-check-game-turn.service";
