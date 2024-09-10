@@ -18,7 +18,7 @@ export class SendTurnNotificationUsecase {
   ) {}
 
   async execute() {
-    const actualPlayer = await this.checkGameTurnService.checkGameTurn();
+    const actualPlayer = await this.checkGameTurnService.checkGameTurn("Azul");
     const gameTurn = await this.gameTurnRepository.get();
 
     if (actualPlayer.name !== gameTurn.player.name) {

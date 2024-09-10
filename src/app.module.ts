@@ -5,8 +5,17 @@ import { BGACheckGameTurnService } from "./infrastructure/adapters/game-turn/bga
 import { WhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/whatsapp-message.service";
 import { InMemoryGameTurnRepository } from "./infrastructure/adapters/game-turn/in-memory-game-turn.repository";
 import { MockWhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/mock-whatsapp-message.service";
+import { BGACheckGameTurnService } from "./infrastructure/adapters/bga/bga-check-game-turn.service";
+import { WhatsappMessageService } from "./infrastructure/adapters/whatsapp-message.service";
+import { InMemoryGameTurnRepository } from "./infrastructure/adapters/in-memory-game-turn.repository";
+import { ConfigModule } from "@nestjs/config";
+
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, // Esto hace que las variables estén disponibles globalmente
+    }),
+  ],
   controllers: [TurnNotificationController],
   providers: [
     {
