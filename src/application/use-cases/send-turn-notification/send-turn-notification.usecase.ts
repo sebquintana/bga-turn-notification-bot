@@ -5,15 +5,15 @@ import { MessageService } from "src/domain/ports/message.service";
 
 @Injectable()
 export class SendTurnNotificationUsecase {
-  private readonly gameName = "Las Ruinas Perdidas de Arnak";
-  private readonly arnakTable = "1/arnak?table=555755591";
+  private readonly gameName = "Azul";
+  private readonly arnakTable = "3/azul?table=556917628";
 
   constructor(
     @Inject("BGACheckGameTurnService")
     private checkGameTurnService: CheckGameTurnService,
     @Inject("InMemoryGameTurnRepository")
     private gameTurnRepository: GameTurnRepository,
-    @Inject("MockWhatsappMessageService")
+    @Inject("WhatsappMessageService")
     private messageService: MessageService
   ) {}
 
@@ -21,7 +21,7 @@ export class SendTurnNotificationUsecase {
     const actualPlayer = await this.checkGameTurnService.checkGameTurn("Azul");
     const gameTurn = await this.gameTurnRepository.get();
 
-    if (actualPlayer.name !== gameTurn.player.name) {
+    if (!gameTurn || actualPlayer.name !== gameTurn.player.name) {
       await this.messageService.sendTurnMessage(
         actualPlayer.phoneNumber,
         this.arnakTable,

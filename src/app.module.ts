@@ -5,10 +5,8 @@ import { BGACheckGameTurnService } from "./infrastructure/adapters/game-turn/bga
 import { WhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/whatsapp-message.service";
 import { InMemoryGameTurnRepository } from "./infrastructure/adapters/game-turn/in-memory-game-turn.repository";
 import { MockWhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/mock-whatsapp-message.service";
-import { BGACheckGameTurnService } from "./infrastructure/adapters/bga/bga-check-game-turn.service";
-import { WhatsappMessageService } from "./infrastructure/adapters/whatsapp-message.service";
-import { InMemoryGameTurnRepository } from "./infrastructure/adapters/in-memory-game-turn.repository";
 import { ConfigModule } from "@nestjs/config";
+import { InMemoryPlayerRepository } from "./infrastructure/adapters/player/in-memory-player.repository";
 
 @Module({
   imports: [
@@ -29,6 +27,10 @@ import { ConfigModule } from "@nestjs/config";
     {
       provide: "InMemoryGameTurnRepository",
       useClass: InMemoryGameTurnRepository,
+    },
+    {
+      provide: "InMemoryPlayerRepository",
+      useClass: InMemoryPlayerRepository,
     },
     {
       provide: "WhatsappMessageService",

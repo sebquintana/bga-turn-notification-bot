@@ -1,21 +1,25 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { Player } from "src/domain/entities/player.vo";
 import { CheckGameTurnService } from "src/domain/ports/check-game-turn.service";
 
 import { ConfigService } from "@nestjs/config";
 import * as puppeteer from "puppeteer";
 import { Page } from "puppeteer";
+import { PlayerRepository } from "src/domain/ports/player.repository";
 
 @Injectable()
 export class BGACheckGameTurnService implements CheckGameTurnService {
-  private page: Page; // Ahora el tipo de page es correctamente Page
+  private page: Page;
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    @Inject("InMemoryPlayerRepository")
+    private playerRepository: PlayerRepository
+  ) {}
 
   async checkGameTurn(game?: string): Promise<Player> {
-    // Lógica para obtener el jugador actual del juego
-    await this.authenticateBga(); // Nos autenticamos
-    const currentTurnInGames = await this.getGamesTurns(); // Obtenemos la información de las partidas en curso
+    await this.authenticateBga();
+    const currentTurnInGames = await this.getGamesTurns();
 
     console.log({ currentTurnInGames });
 
@@ -23,7 +27,7 @@ export class BGACheckGameTurnService implements CheckGameTurnService {
 
     console.log({ gameInfo });
 
-    return new Player("Axel");
+    return this.playerRepository.findByBgaNickName(gameInfo.player);
   }
 
   private async authenticateBga(): Promise<void> {
@@ -37,17 +41,14 @@ export class BGACheckGameTurnService implements CheckGameTurnService {
 
     console.log(await this.page.title());
 
-    // Rellenar nombre de usuario y contraseña
     await this.page.waitForSelector("#username_input");
     await this.page.type("#username_input", "AxelZeta");
 
     await this.page.waitForSelector('input[type="password"]');
-    await this.page.type('input[type="password"]', password); // Usar password del configService
+    await this.page.type('input[type="password"]', password);
 
-    // Iniciar sesión
     await this.page.click("#submit_login_button");
 
-    // Esperar a que la autenticación se complete y la página principal cargue
     await this.page.waitForNavigation();
   }
 
