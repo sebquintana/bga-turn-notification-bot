@@ -1,5 +1,5 @@
-import { Player } from "src/domain/entities/player.vo";
-import { PlayerRepository } from "src/domain/ports/player.repository";
+import { Player } from "domain/entities/player.vo";
+import { PlayerRepository } from "domain/ports/player.repository";
 
 export class InMemoryPlayerRepository implements PlayerRepository {
   private players: Player[] = [];

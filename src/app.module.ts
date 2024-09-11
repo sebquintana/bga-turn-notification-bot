@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
-import { TurnNotificationController } from "./infrastructure/rest/turn-notification.controller";
-import { SendTurnNotificationUsecase } from "./application/use-cases/send-turn-notification/send-turn-notification.usecase";
-import { BGACheckGameTurnService } from "./infrastructure/adapters/game-turn/bga/bga-check-game-turn.service";
-import { WhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/whatsapp-message.service";
-import { InMemoryGameTurnRepository } from "./infrastructure/adapters/game-turn/in-memory-game-turn.repository";
-import { MockWhatsappMessageService } from "./infrastructure/adapters/message/whatsapp/mock-whatsapp-message.service";
+import { TurnNotificationController } from "infrastructure/rest/turn-notification.controller";
+import { SendTurnNotificationUsecase } from "application/use-cases/send-turn-notification/send-turn-notification.usecase";
+import { BGACheckGameTurnService } from "infrastructure/adapters/game-turn/bga/bga-check-game-turn.service";
+import { WhatsappMessageService } from "infrastructure/adapters/message/whatsapp/whatsapp-message.service";
+import { InMemoryGameTurnRepository } from "infrastructure/adapters/game-turn/in-memory-game-turn.repository";
+import { MockWhatsappMessageService } from "infrastructure/adapters/message/whatsapp/mock-whatsapp-message.service";
 import { ConfigModule } from "@nestjs/config";
-import { InMemoryPlayerRepository } from "./infrastructure/adapters/player/in-memory-player.repository";
+import { InMemoryPlayerRepository } from "infrastructure/adapters/player/in-memory-player.repository";
 
 @Module({
   imports: [

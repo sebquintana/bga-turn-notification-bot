@@ -2,7 +2,7 @@ import { Controller, Get, Res } from "@nestjs/common";
 import * as QRCode from "qrcode";
 import { Response } from "express";
 import { OnEvent } from "@nestjs/event-emitter";
-import { QRBotUsecase } from "src/application/use-cases/qr-bot.usecase";
+import { QRBotUsecase } from "application/use-cases/qr-bot.usecase";
 
 @Controller("bot")
 export class BotController {

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { GameTurn } from "src/domain/entities/game-turn.entity";
-import { GameTurnRepository } from "src/domain/ports/game-turn.repository";
+import { GameTurn } from "domain/entities/game-turn.entity";
+import { GameTurnRepository } from "domain/ports/game-turn.repository";
 
 @Injectable()
 export class InMemoryGameTurnRepository implements GameTurnRepository {

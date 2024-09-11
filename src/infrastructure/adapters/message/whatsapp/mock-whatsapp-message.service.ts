@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { MessageService } from "src/domain/ports/message.service";
+import { MessageService } from "domain/ports/message.service";
 
 @Injectable()
 export class MockWhatsappMessageService implements MessageService {

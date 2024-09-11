@@ -1,11 +1,11 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Player } from "src/domain/entities/player.vo";
-import { CheckGameTurnService } from "src/domain/ports/check-game-turn.service";
+import { Player } from "domain/entities/player.vo";
+import { CheckGameTurnService } from "domain/ports/check-game-turn.service";
 
 import { ConfigService } from "@nestjs/config";
 import * as puppeteer from "puppeteer";
 import { Page } from "puppeteer";
-import { PlayerRepository } from "src/domain/ports/player.repository";
+import { PlayerRepository } from "domain/ports/player.repository";
 
 @Injectable()
 export class BGACheckGameTurnService implements CheckGameTurnService {

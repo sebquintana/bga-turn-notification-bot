@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { CheckGameTurnService } from "src/domain/ports/check-game-turn.service";
-import { GameTurnRepository } from "src/domain/ports/game-turn.repository";
-import { MessageService } from "src/domain/ports/message.service";
+import { CheckGameTurnService } from "domain/ports/check-game-turn.service";
+import { GameTurnRepository } from "domain/ports/game-turn.repository";
+import { MessageService } from "domain/ports/message.service";
 
 @Injectable()
 export class SendTurnNotificationUsecase {
