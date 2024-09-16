@@ -131,3 +131,5 @@ dist
 /.wwebjs_auth
 /.wwebjs_cache
 /cdk.out
+/lib
+.DS_Store

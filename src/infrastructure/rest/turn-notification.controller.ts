@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Post } from "@nestjs/common";
+import { Controller, Get, Inject } from "@nestjs/common";
 import { SendTurnNotificationUsecase } from "application/use-cases/send-turn-notification/send-turn-notification.usecase";
 
 @Controller("turn-notification")
